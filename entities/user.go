@@ -6,7 +6,7 @@ type User struct {
 	Email    string `gorm:"type:varchar(100);unique" json:"email"`
 	Password string `gorm:"type:varchar(255)" json:"password"`
 	RoleID   int64  `gorm:"not null" json:"-"`
-	Role     *Role  `gorm:"foreignkey:RoleID;constraint:onUpdate:CASCADE,onDelete:CASCADE" json:"user"`
+	Role     *Role  `gorm:"foreignkey:RoleID;constraint;onUpdate:RESTRICT,onDelete:RESTRICT" json:"user"`
 }
 
 func (User) TableName() string {
