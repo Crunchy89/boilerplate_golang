@@ -1,5 +1,9 @@
 package entities
 
+import (
+	"gorm.io/gorm"
+)
+
 type User struct {
 	Model
 	Username string `gorm:"type:varchar(100);unique" json:"username"`
@@ -11,4 +15,9 @@ type User struct {
 
 func (User) TableName() string {
 	return "user"
+}
+
+type UserRepository interface {
+	SaveUser(db *gorm.DB) (*User, error)
+	FindAllUsers(db *gorm.DB) (*[]User, error)
 }
